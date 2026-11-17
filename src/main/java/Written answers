@@ -1,0 +1,34 @@
+1. currentLoadKg is private because it forces encapsulation. This prevents subclasses like Truck
+from modifying the current load.registration is protected so that the child classes can access it
+without needing a getter like Truck, but external classes do not get that privilegde like Depot.
+
+2. Method overriding is when a subclass uses a method that is already in the parent class but
+implements it in its own specific way. Mathod overloading is when multiple methods share the
+same name but have different parametres.
+
+3. The compiler goes to vehicle and reads the 2-parameter overloaded method "calculate cost"
+then the code executes the necessary calculations that are inside this method and returns
+calculateCost(100) + (2.00 * 4). Then at runtime Java checks the actual object type of a,which
+is Truck, and calls Trucks overridden 1-parameter calculateCost(100) method instead of
+Vehicle's abstract one. then it calculates the cost (1.20 * 100) + (25 * 3) = 120 + 75 = 195
+then it returns to Vehicle's method, which adds the stop fee: 195 + (2 * 4) = 195 + 8 = 203
+
+4. Even though a holds a Truck object in memory at runtime its declared reference type is Vehicle.
+During compilation Java checks method availability strictly against the reference type (Vehicle),
+not the runtime object type. Because getAxles is defined only in Truck and does not exist in the
+Vehicle class blueprint, the compiler rejects the call with a "cannot find symbol" error
+
+5. Vehicle is a category that has many other categories like trucks, scooters. Making Vehicle abstract
+prevents anyone from instantiating a generic Vehicle object while still allowing it to serve as a
+shared template and polymorphic reference type. but even though Vehicle cannot be instantiated directly
+its subclasses inherit its private and protected fields therefore it needs a constructor so that they could
+call super... as the first line of their own constructors to properly initialize those shared fields.
+
+6. Composition is a strong "owns-a" relationship where the child object's lifecycle is strictly tied to the
+parent object(vehicle and logbook). Aggregation is a weaker "has-a" relationship where objects can exist
+independently of the container (depot and vehicle)
+
+8. drone flies. electric scooter doesnt fly. this does not make sense why would a drone be extended from
+e-scooter. it would inherit the wrong properties. instead it should be classified as an another type of
+vehicle and instead extend the vehicle class. this way it can have its own specific properties that is only
+specific to drones. drones and scooters do not have anything in common.
